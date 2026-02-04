@@ -1,0 +1,138 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <h1> All'amore della mia vita</h1>
+    <style>
+        body {
+             margin: 0;
+             padding: 0;
+             overflow-x: hidden;
+            background-image: url('sfondo11.jpg');
+            background-size: 100%;
+            background-position: 50% 50%;
+            background-repeat: no-repeat;
+            background-color: #fdf6f0;
+            font-family: 'Georgia', serif;
+            text-align: center;
+        }
+        
+        .polaroid {
+            width: 320px;
+            background: white;
+            padding: 15px 15px 40px 15px;
+            margin: 30px auto;
+            box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+            transform: rotate(-2deg);
+            transition: transform 0.4s ease;
+        }
+        
+        .polaroid:hover {
+            transform: rotate(0deg) scale(1.03);
+        }
+        
+        .polaroid img {
+            width: 100%;
+            border-radius: 4px;
+        }
+        
+        .caption {
+            margin-top: 15px;
+            font-size: 16px;
+            font-style: italic;
+            color: #555;
+        }
+        #tempo {
+            display: inline-block;
+            animation: heartbeat 2s infinite;
+        }
+
+        @keyframes heartbeat {
+        0%   { transform: scale(1); }
+        50%  { transform: scale(1.05); }
+        100% { transform: scale(1); }
+        }
+
+        </style>
+</head>
+<body>
+    <audio id="audio" controls  hidden  loop>
+        <source src="arcobaleno.mp3">  
+    </audio>
+    <div class="polaroid">
+    <img id="foto" src="IMG-20250107-WA0032.jpg" alt="Foto di coppia" width="300">
+    </div>
+    <div>
+        <button onclick="indietro()">Indietro</button>
+        <button onclick="avanti()">Avanti</button>
+    </div>
+    <div>
+    <p id="testo"> Ciao amore mio,</p>
+    <p id="diff">Giorni insieme: <span id="tempo"></span></p>
+    </div>
+    <script>
+        const fotoarray = [
+            {src: "IMG-20250107-WA0032.jpg", audio: "arcobaleno.mp3"},
+            {src: "fotomare.jpg", audio: "rocco.mp3",testo:"Non m serv stu mare si no veco cu tte"},
+            {src: "IMG-20241211-WA0011.jpg", audio: "togiur.mp3"},
+            {src: "IMG-20250509-WA0014.jpg", audio: "stelle.mp3"},
+            {src: "primoincontro.jpg", audio: "arcobaleno.mp3",testo:"Nostro primo incontro"},
+            {src:"immagine.jpg", audio: "ultimapoesia.mp3",testo:"Qui non c'è bisogno di parole"}
+    ];
+     
+        let indice = 0;
+        function mostraFoto() {
+        document.getElementById("foto").src = fotoarray[indice].src;
+        const audioElem = document.getElementById("audio");
+        const foto = fotoarray[indice];
+        audioElem.src = foto.audio; // cambia audio
+        audioElem.load();
+        audioElem.play();
+        // Audio rimane invariato, non serve cambiare
+        if (foto.testo) {
+        document.getElementById("testo").innerText = foto.testo;
+        } else {
+        document.getElementById("testo").innerText = "Ciao amore mio,";
+        }
+        // Cambia testo se presente, altrimenti testo di default
+    }
+
+    function avanti() {
+        indice++;
+        if (indice >= fotoarray.length) indice = 0;
+        //condizione per non uscire dall'array
+        mostraFoto();
+    }
+
+    function indietro() {
+        indice--;
+        if (indice < 0) indice = fotoarray.length - 1;
+        //.lenght serve per prendere la lunghezza dell'array
+        mostraFoto();
+    }
+    function tempoinsieme(){
+        const datafid=new Date("2023-07-16");
+        const oggi=new Date();
+        let anni=oggi.getFullYear()-datafid.getFullYear();
+        let mesi=oggi.getMonth()-datafid.getMonth();
+        let giorni=oggi.getDate()-datafid.getDate();
+        if(mesi<0 || (mesi===0 && giorni<0)){
+            anni--;
+            mesi+=12;
+        }
+        if(giorni<0){
+            mesi--;
+            const giorniprecedenti=new Date(oggi.getFullYear(),oggi.getMonth(),0);
+            giorni+=giorniprecedenti.getDate();
+        }
+         document.getElementById("tempo").innerText =
+        `${anni} anni, ${mesi} mesi e ${giorni} giorni`;
+        
+    }
+    window.addEventListener("load", () => {
+    tempoinsieme();
+    });
+    
+
+        </script>
+    </body>
+    </html>
