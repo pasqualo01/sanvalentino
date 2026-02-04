@@ -12,25 +12,15 @@
              margin: 0;
              padding: 0;
              overflow-x: hidden;
+            background-image: url('sfondo11.jpg');
+            background-size: cover;
+            background-position: 50% 50%;
+            background-repeat: no-repeat;
+            background-color: #fdf6f0;
             font-family: 'Georgia', serif;
             text-align: center;
+             min-height: 100vh;
         }
-
-        body::before {
-        content: "";
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-
-        background-image: url('sfondo11.jpg');
-        background-size: cover;
-        background-position: center center;
-        background-repeat: no-repeat;
-
-        z-index: -1;
-    }
         
         .polaroid {
             width: 320px;
@@ -154,6 +144,3 @@
     </body>
 
     </html>
-
-
-
