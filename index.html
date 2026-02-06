@@ -3,27 +3,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         html {
-            height: 100%;
+            min-height: 100%;
             margin: 0;
             padding: 0;
-            background-color: #111;
+            background: linear-gradient(180deg, #1b263b 0%, #0f172a 100%);
         }
 
         body {
             margin: 0;
             padding: 0;
             overflow-x: hidden;
-            background-color: #111;
+            background-color: transparent;
             background-image: url('sfondo11.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: scroll;
-            font-family: 'Georgia', serif;
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
             text-align: center;
+            min-height: 100vh;
             min-height: 100dvh;
             position: relative;
-            padding-bottom: 30px;
+            padding: 20px 15px 40px;
+            color: #ffffff;
         }
         
         h1 {
@@ -31,6 +33,9 @@
             z-index: 1;
             margin: 20px 0;
             padding: 0 15px;
+            font-size: clamp(1.7rem, 5vw, 2.6rem);
+            letter-spacing: 0.6px;
+            text-shadow: 0 3px 10px rgba(0, 0, 0, 0.45);
         }
         
         .polaroid {
@@ -60,6 +65,43 @@
             font-style: italic;
             color: #555;
         }
+
+        button {
+            border: none;
+            border-radius: 999px;
+            padding: 12px 24px;
+            margin: 8px 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            color: #fff;
+            cursor: pointer;
+            background: linear-gradient(135deg, #ff4e88, #fca311);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 22px rgba(0, 0, 0, 0.35);
+            filter: brightness(1.05);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        #testo,
+        #diff {
+            display: inline-block;
+            margin: 10px auto;
+            padding: 12px 18px;
+            border-radius: 14px;
+            background: rgba(10, 20, 30, 0.45);
+            backdrop-filter: blur(2px);
+            color: #fff;
+            text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+        }
         
         #tempo {
             display: inline-block;
@@ -88,8 +130,11 @@
                 font-size: 1.5em;
             }
 
-            body {
-                min-height: 100svh;
+            body { min-height: 100svh; }
+
+            button {
+                padding: 11px 20px;
+                font-size: 0.95rem;
             }
         }
     </style>
